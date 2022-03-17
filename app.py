@@ -3,11 +3,46 @@ from flask import Flask
 from suds.client import Client
 
 app = Flask("__name__")
-client = Client('link to your wsdl file', cache=None)
+client = Client('http://localhost:8090/?wsdl', cache=None)
+
 
 @app.route('/')
-def index():
-    return client.service.your_method_name(arguments)
+def ping():
+    arguments = 'www.google.com'
+    res = client.service.ping_host(arguments)
+    # Transform string array into dictionary
+    dict = {}
+    i = 0
+    for r in res:
+        dict[i] = r
+        i += 1
+    return dict
+
+
+@app.route('/showip')
+def showip():
+    arguments = 'www.google.com'
+    res = client.service.res_name(arguments)
+    # Transform string array into dictionary
+    dict = {}
+    i = 0
+    for r in res:
+        dict[i] = r
+        i += 1
+    return dict
+
+
+@app.route('/dns')
+def dns():
+    arguments = 'google.com'
+    res = client.service.dns(arguments)
+    # Transform string array into dictionary
+    dict = {}
+    i = 0
+    for r in res:
+        dict[i] = r
+        i += 1
+    return dict
 
 
 if __name__ == "__main__":
