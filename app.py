@@ -3,7 +3,7 @@ from flask import Flask
 from suds.client import Client
 
 app = Flask("__name__")
-client = Client('http://2f17-193-40-13-174.ngrok.io/?wsdl', cache=None)
+client = Client('http://0ba5-193-40-12-11.ngrok.io/?wsdl', cache=None)
 
 
 @app.route('/')
