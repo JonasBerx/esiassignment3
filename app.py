@@ -22,14 +22,14 @@ def ping():
 @app.route('/showip')
 def showip():
     arguments = 'www.google.com'
-    res = client.service.res_name(arguments)
+    return client.service.res_name(arguments)
     # Transform string array into dictionary
-    dict = {}
-    i = 0
-    for r in res:
-        dict[i] = r
-        i += 1
-    return dict
+    #dict = {}
+    #i = 0
+    #for r in res:
+    #    dict[i] = r
+    #    i += 1
+    #return dict
 
 
 @app.route('/dns')
