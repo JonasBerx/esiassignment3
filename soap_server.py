@@ -1,4 +1,5 @@
 from pydoc import resolve
+from smtpd import DebuggingServer
 from spyne import Application, rpc, ServiceBase, Iterable, Integer, Unicode
 
 from spyne.protocol.soap import Soap11
@@ -18,7 +19,9 @@ class HelloWorldService(ServiceBase):
     @rpc(Unicode, _returns=Iterable(Unicode))
     def ping_host(ctx, host):
         for i in range(5):
-            response = os.system("ping -c 1 %s" % host)
+            response = os.system("ping -n 1 %s" % host)
+            print("-------------------------")
+            print(response)
             if response == 0:
                 yield u'Host %s is reachable' % host
             else:
@@ -30,7 +33,7 @@ class HelloWorldService(ServiceBase):
         # Can also be done using socket
         # res2 = socket.gethostbyname(host)
         for ipVal in result:
-            yield u'%s has address ' % host + '%s' % ipVal.to_text()
+            return u'%s has address ' % host + '%s' % ipVal.to_text()
 
     @rpc(Unicode, _returns=Iterable(Unicode))
     def dns(ctx, host):
