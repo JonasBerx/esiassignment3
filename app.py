@@ -19,9 +19,9 @@ def ping(host):
     return dict
 
 
-@app.route('/showip')
-def showip():
-    arguments = 'www.google.com'
+@app.route('/showip/<host>')
+def showip(host):
+    arguments = host
     return client.service.res_name(arguments)
     # Transform string array into dictionary
     #dict = {}
@@ -32,9 +32,9 @@ def showip():
     # return dict
 
 
-@app.route('/dns')
-def dns():
-    arguments = 'google.com'
+@app.route('/dns/<host>')
+def dns(host):
+    arguments = host
     res = client.service.dns(arguments)
     # Transform string array into dictionary
     dict = {}
