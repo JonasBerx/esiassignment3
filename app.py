@@ -4,12 +4,12 @@ from flask import Flask
 from suds.client import Client
 
 app = Flask("__name__")
-client = Client('http://236a-193-40-12-11.ngrok.io/?wsdl', cache=None)
+client = Client('http://0ba5-193-40-12-11.ngrok.io/?wsdl', cache=None)
 
 
 @app.route('/<host>')
 def ping(host):
-    arguments = host
+    arguments = host+".com"
     res = client.service.ping_host(arguments)
     # Transform string array into dictionary
     dict = {}
@@ -22,7 +22,7 @@ def ping(host):
 
 @app.route('/showip/<host>')
 def showip(host):
-    arguments = host
+    arguments = host+".com"
     return client.service.res_name(arguments)
     # Transform string array into dictionary
     #dict = {}
@@ -35,7 +35,7 @@ def showip(host):
 
 @app.route('/dns/<host>')
 def dns(host):
-    arguments = host
+    arguments = host+".com"
     res = client.service.dns(arguments)
     # Transform string array into dictionary
     dict = {}
