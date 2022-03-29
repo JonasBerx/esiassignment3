@@ -7,9 +7,9 @@ app = Flask("__name__")
 client = Client('http://236a-193-40-12-11.ngrok.io/?wsdl', cache=None)
 
 
-@app.route('/<host>')
+@app.route('/')
 def ping(host):
-    arguments = host+".com"
+    arguments = "google.com"
     res = client.service.ping_host(arguments)
     # Transform string array into dictionary
     dict = {}
@@ -20,9 +20,9 @@ def ping(host):
     return dict
 
 
-@app.route('/showip/<host>')
+@app.route('/showip')
 def showip(host):
-    arguments = host+".com"
+    arguments = "google.com"
     return client.service.res_name(arguments)
     # Transform string array into dictionary
     #dict = {}
@@ -33,9 +33,9 @@ def showip(host):
     # return dict
 
 
-@app.route('/dns/<host>')
+@app.route('/dns')
 def dns(host):
-    arguments = host+".com"
+    arguments = "google.com"
     res = client.service.dns(arguments)
     # Transform string array into dictionary
     dict = {}
