@@ -1,14 +1,15 @@
 from datetime import datetime
+from xmlrpc.client import _HostType
 from flask import Flask
 from suds.client import Client
 
 app = Flask("__name__")
-client = Client('http://0ba5-193-40-12-11.ngrok.io/?wsdl', cache=None)
+client = Client('http://236a-193-40-12-11.ngrok.io/?wsdl', cache=None)
 
 
-@app.route('/')
-def ping():
-    arguments = 'www.google.com'
+@app.route('/<host>')
+def ping(host):
+    arguments = host
     res = client.service.ping_host(arguments)
     # Transform string array into dictionary
     dict = {}
@@ -19,22 +20,22 @@ def ping():
     return dict
 
 
-@app.route('/showip')
-def showip():
-    arguments = 'www.google.com'
+@app.route('/showip/<host>')
+def showip(host):
+    arguments = host
     return client.service.res_name(arguments)
     # Transform string array into dictionary
     #dict = {}
     #i = 0
-    #for r in res:
+    # for r in res:
     #    dict[i] = r
     #    i += 1
-    #return dict
+    # return dict
 
 
-@app.route('/dns')
-def dns():
-    arguments = 'google.com'
+@app.route('/dns/<host>')
+def dns(host):
+    arguments = host
     res = client.service.dns(arguments)
     # Transform string array into dictionary
     dict = {}
