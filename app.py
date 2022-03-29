@@ -6,7 +6,7 @@ app = Flask("__name__")
 client = Client('http://236a-193-40-12-11.ngrok.io/?wsdl', cache=None)
 
 
-@app.route('/<name>')
+@app.route('/<host>')
 def ping(host):
     arguments = host
     res = client.service.ping_host(arguments)
