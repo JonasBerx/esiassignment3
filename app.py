@@ -6,9 +6,9 @@ app = Flask("__name__")
 client = Client('http://236a-193-40-12-11.ngrok.io/?wsdl', cache=None)
 
 
-@app.route('/')
-def ping():
-    arguments = 'www.google.com'
+@app.route('/<name>')
+def ping(host):
+    arguments = host
     res = client.service.ping_host(arguments)
     # Transform string array into dictionary
     dict = {}
