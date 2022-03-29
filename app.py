@@ -8,7 +8,7 @@ client = Client('http://236a-193-40-12-11.ngrok.io/?wsdl', cache=None)
 
 
 @app.route('/')
-def ping(host):
+def ping():
     arguments = "google.com"
     res = client.service.ping_host(arguments)
     # Transform string array into dictionary
@@ -21,7 +21,7 @@ def ping(host):
 
 
 @app.route('/showip')
-def showip(host):
+def showip():
     arguments = "google.com"
     return client.service.res_name(arguments)
     # Transform string array into dictionary
@@ -34,7 +34,7 @@ def showip(host):
 
 
 @app.route('/dns')
-def dns(host):
+def dns():
     arguments = "google.com"
     res = client.service.dns(arguments)
     # Transform string array into dictionary
